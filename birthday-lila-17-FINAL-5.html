@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun Lila! 🎂</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Quicksand:wght@600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            overflow: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: #e8d5c4;
+            border-radius: 15px;
+            box-shadow: 0 0 0 4px #5d4e37, 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .screen {
+            min-height: 550px;
+            padding: 50px 25px 35px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            background: #e8d5c4;
+            position: relative;
+        }
+        
+        .screen.active {
+            display: flex;
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Navigation */
+        .nav-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 45px;
+            background: #d4b5a0;
+            border-bottom: 3px solid #5d4e37;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            align-items: center;
+        }
+        
+        .nav-btn {
+            width: 36px;
+            height: 36px;
+            background: #ffb3d9;
+            border: 3px solid #5d4e37;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #5d4e37;
+            box-shadow: 0 3px 0 #5d4e37;
+            transition: all 0.15s ease;
+        }
+        
+        .nav-btn:hover {
+            background: #ffc5e3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 0 #5d4e37;
+        }
+        
+        .nav-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #5d4e37;
+        }
+        
+        /* Dialog Box */
+        .dialog {
+            background: #fff;
+            border: 3px solid #5d4e37;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 0 #5d4e37;
+            width: 100%;
+            margin: 10px 0;
+            animation: dialogPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        @keyframes dialogPop {
+            0% {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .dialog-text {
+            font-family: 'VT323', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #2d2d2d;
+            text-align: center;
+        }
+        
+        /* Character Stage */
+        .stage {
+            width: 100%;
+            height: 220px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        /* Button */
+        .btn {
+            background: #ff85c0;
+            border: 3px solid #5d4e37;
+            border-radius: 8px;
+            padding: 12px 28px;
+            font-family: 'VT323', monospace;
+            font-size: 18px;
+            color: #5d4e37;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #5d4e37;
+            transition: all 0.15s ease;
+        }
+        
+        .btn:hover {
+            background: #ff9bcf;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #5d4e37;
+        }
+        
+        .btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #5d4e37;
+        }
+        
+        /* ===== GIFT BOX ===== */
+        .gift-box {
+            width: 100px;
+            height: 100px;
+            background: #667eea;
+            border: 3px solid #5d4e37;
+            border-radius: 8px;
+            position: relative;
+            animation: giftShake 1.8s ease-in-out infinite;
+            cursor: pointer;
+        }
+        
+        .gift-box:hover {
+            animation: giftExcited 0.5s ease-in-out infinite;
+        }
+        
+        @keyframes giftShake {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            10%, 30%, 50%, 70%, 90% { transform: rotate(-4deg) scale(1.02); }
+            20%, 40%, 60%, 80% { transform: rotate(4deg) scale(1.04); }
+        }
+        
+        @keyframes giftExcited {
+            0%, 100% { transform: rotate(0deg) scale(1.1); }
+            25% { transform: rotate(-10deg) scale(1.15); }
+            50% { transform: rotate(10deg) scale(1.15); }
+            75% { transform: rotate(-10deg) scale(1.15); }
+        }
+        
+        .gift-ribbon {
+            position: absolute;
+        }
+        
+        .ribbon-h {
+            width: 100%;
+            height: 18px;
+            background: #ff6b9d;
+            border-top: 3px solid #5d4e37;
+            border-bottom: 3px solid #5d4e37;
+            top: 41px;
+        }
+        
+        .ribbon-v {
+            width: 18px;
+            height: 100%;
+            background: #ff6b9d;
+            border-left: 3px solid #5d4e37;
+            border-right: 3px solid #5d4e37;
+            left: 41px;
+        }
+        
+        .bow {
+            width: 40px;
+            height: 30px;
+            background: #ff6b9d;
+            border: 3px solid #5d4e37;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            top: -18px;
+            left: 30px;
+            animation: bowFloat 2.5s ease-in-out infinite;
+        }
+        
+        @keyframes bowFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-4px) scale(1.06); }
+        }
+        
+        .bow::before, .bow::after {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: #ff6b9d;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: absolute;
+            top: 8px;
+        }
+        
+        .bow::before { left: -24px; }
+        .bow::after { right: -24px; }
+        
+        /* ===== CINNAMOROLL WALKING ===== */
+        .cinnamoroll {
+            width: 90px;
+            height: 80px;
+            position: relative;
+            animation: cinnaWalk 12s ease-in-out infinite;
+        }
+        
+        @keyframes cinnaWalk {
+            0% { transform: translateX(-150px); }
+            45% { transform: translateX(150px); }
+            50% { transform: translateX(150px) scaleX(-1); }
+            95% { transform: translateX(-150px) scaleX(-1); }
+            100% { transform: translateX(-150px) scaleX(1); }
+        }
+        
+        .cinna-body {
+            width: 100%;
+            height: 50px;
+            background: #fff;
+            border: 3px solid #5d4e37;
+            border-radius: 50% 50% 40% 40%;
+            position: relative;
+            animation: cinnaFloat 2.5s ease-in-out infinite;
+        }
+        
+        @keyframes cinnaFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .cinna-ear {
+            width: 45px;
+            height: 55px;
+            background: #fff;
+            border: 3px solid #5d4e37;
+            border-radius: 50% 50% 25% 25%;
+            position: absolute;
+            top: -35px;
+            animation: earFlap 3s ease-in-out infinite;
+        }
+        
+        @keyframes earFlap {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-8deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        .cinna-ear.left {
+            left: 3px;
+            transform-origin: bottom left;
+        }
+        
+        .cinna-ear.right {
+            right: 3px;
+            transform-origin: bottom right;
+            animation-delay: 0.4s;
+        }
+        
+        .cinna-ear-pink {
+            width: 26px;
+            height: 30px;
+            background: #ffb3d9;
+            border: 3px solid #5d4e37;
+            border-radius: 50% 50% 25% 25%;
+            position: absolute;
+            top: 8px;
+            left: 7px;
+        }
+        
+        .cinna-face {
+            width: 65px;
+            height: 38px;
+            position: absolute;
+            top: 15px;
+            left: 10px;
+        }
+        
+        .cinna-eye {
+            width: 8px;
+            height: 8px;
+            background: #2d2d2d;
+            border-radius: 50%;
+            position: absolute;
+            top: 8px;
+            animation: eyeBlink 5s infinite;
+        }
+        
+        @keyframes eyeBlink {
+            0%, 48%, 52%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.1); }
+        }
+        
+        .cinna-eye.left { left: 15px; }
+        .cinna-eye.right { right: 15px; }
+        
+        .cinna-blush {
+            width: 12px;
+            height: 8px;
+            background: #ffc0e0;
+            border-radius: 50%;
+            position: absolute;
+            top: 14px;
+            opacity: 0.7;
+        }
+        
+        .cinna-blush.left { left: 3px; }
+        .cinna-blush.right { right: 3px; }
+        
+        .cinna-mouth {
+            width: 16px;
+            height: 10px;
+            border: 2px solid #2d2d2d;
+            border-top: none;
+            border-radius: 0 0 50% 50%;
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .cinna-legs {
+            display: flex;
+            gap: 22px;
+            position: absolute;
+            bottom: -20px;
+            left: 22px;
+        }
+        
+        .cinna-leg {
+            width: 20px;
+            height: 22px;
+            background: #fff;
+            border: 3px solid #5d4e37;
+            border-radius: 0 0 40% 40%;
+            animation: legWalk 0.6s ease-in-out infinite;
+        }
+        
+        @keyframes legWalk {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        
+        .cinna-leg.left { animation-delay: 0s; }
+        .cinna-leg.right { animation-delay: 0.3s; }
+        
+        /* Tangan Cinnamoroll - TANGAN KANAN MELAMBAI */
+        .cinna-paw {
+            width: 18px;
+            height: 24px;
+            background: #fff;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 8px;
+            right: -8px;
+            transform-origin: top center;
+            animation: cinnaPawWave 2s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        /* Tangan kiri Cinnamoroll - diam di samping */
+        .cinna-paw::before {
+            content: '';
+            width: 18px;
+            height: 24px;
+            background: #fff;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: -70px;
+            z-index: 1;
+        }
+        
+        @keyframes cinnaPawWave {
+            0% { transform: rotate(15deg); }
+            20% { transform: rotate(-20deg); }
+            40% { transform: rotate(40deg); }
+            60% { transform: rotate(-15deg); }
+            80% { transform: rotate(35deg); }
+            100% { transform: rotate(15deg); }
+        }
+        
+        /* ===== POMPOMPURIN ===== */
+        .pompompurin {
+            width: 85px;
+            height: 90px;
+            position: relative;
+            animation: pompomJump 1.4s ease-in-out infinite;
+        }
+        
+        @keyframes pompomJump {
+            0%, 100% { transform: translateY(0) scaleY(1); }
+            20% { transform: translateY(-5px) scaleY(1.02); }
+            40% { transform: translateY(-35px) scaleY(0.92); }
+            60% { transform: translateY(0) scaleY(1.08); }
+            80% { transform: translateY(0) scaleY(1); }
+        }
+        
+        .pompom-body {
+            width: 85px;
+            height: 65px;
+            background: #ffd966;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .pompom-hat {
+            width: 50px;
+            height: 22px;
+            background: #8b6914;
+            border: 3px solid #5d4e37;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .pompom-hat::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: #ff6b9d;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .pompom-face {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        /* Tangan kanan Pompompurin - melambai */
+        .pompom-paw {
+            width: 18px;
+            height: 28px;
+            background: #ffd966;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 5px;
+            right: -8px;
+            transform-origin: top center;
+            animation: pompomWave 1.5s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        /* Tangan kiri Pompompurin - diam */
+        .pompom-paw::before {
+            content: '';
+            width: 18px;
+            height: 28px;
+            background: #ffd966;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: -72px;
+        }
+        
+        @keyframes pompomWave {
+            0% { transform: rotate(15deg); }
+            25% { transform: rotate(-10deg); }
+            50% { transform: rotate(45deg); }
+            75% { transform: rotate(-5deg); }
+            100% { transform: rotate(15deg); }
+        }
+        
+        /* ===== MY MELODY - PERBAIKAN TOTAL ===== */
+        .mymelody {
+            width: 90px;
+            height: 100px;
+            position: relative;
+            animation: melodySway 2.5s ease-in-out infinite;
+        }
+        
+        @keyframes melodySway {
+            0%, 100% { transform: rotate(0deg) translateY(0); }
+            25% { transform: rotate(-4deg) translateY(-3px); }
+            50% { transform: rotate(0deg) translateY(-5px); }
+            75% { transform: rotate(4deg) translateY(-3px); }
+        }
+        
+        /* Body My Melody - dibuat lebih proporsional */
+        .melody-body {
+            width: 70px;
+            height: 65px;
+            background: #fff;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        
+        /* Hood My Melody - diperbaiki bentuk dan posisi */
+        .melody-hood {
+            width: 72px;
+            height: 50px;
+            background: #ffb3d9;
+            border: 3px solid #5d4e37;
+            border-radius: 50% 50% 40% 40%;
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+        
+        /* Bunga di hood */
+        .melody-hood::before {
+            content: '';
+            width: 16px;
+            height: 16px;
+            background: #ff85c0;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            right: -6px;
+            animation: flowerBounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes flowerBounce {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.15) rotate(90deg); }
+        }
+        
+        /* Telinga My Melody - diperbaiki */
+        .melody-ear {
+            width: 20px;
+            height: 45px;
+            background: #fff;
+            border: 3px solid #5d4e37;
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            top: 8px;
+            z-index: 1;
+            animation: melodyEarMove 2.8s ease-in-out infinite;
+        }
+        
+        @keyframes melodyEarMove {
+            0%, 100% { transform: rotate(0deg); }
+            30% { transform: rotate(-6deg); }
+            70% { transform: rotate(4deg); }
+        }
+        
+        .melody-ear.left {
+            left: 3px;
+            transform-origin: bottom center;
+        }
+        
+        .melody-ear.right {
+            right: 3px;
+            transform-origin: bottom center;
+            animation-delay: 0.4s;
+        }
+        
+        /* Inner pink ear */
+        .melody-ear::after {
+            content: '';
+            width: 10px;
+            height: 22px;
+            background: #ffc0e0;
+            border-radius: 50%;
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Tangan My Melody - DITAMBAHKAN AGAR BISA MELAMBAI */
+        .melody-paw {
+            width: 20px;
+            height: 30px;
+            background: #fff;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 5px;
+            right: -10px;
+            transform-origin: top center;
+            animation: melodyPawWave 1.6s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        /* Tangan kiri My Melody - diam */
+        .melody-paw::before {
+            content: '';
+            width: 20px;
+            height: 30px;
+            background: #fff;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: -68px;
+        }
+        
+        @keyframes melodyPawWave {
+            0% { transform: rotate(20deg); }
+            20% { transform: rotate(-15deg); }
+            40% { transform: rotate(50deg); }
+            60% { transform: rotate(-10deg); }
+            80% { transform: rotate(40deg); }
+            100% { transform: rotate(20deg); }
+        }
+        
+        /* ===== KUROMI - REDESIGN TOTAL ===== */
+        .hellokitty {
+            width: 100px;
+            height: 110px;
+            position: relative;
+            animation: kuromiJump 1.8s ease-in-out infinite;
+        }
+        
+        @keyframes kuromiJump {
+            0%, 100% { 
+                transform: translateY(0) scale(1); 
+            }
+            50% { 
+                transform: translateY(-12px) scale(1.02); 
+            }
+        }
+        
+        /* Kepala Kuromi - putih bulat seperti Hello Kitty */
+        .kitty-head {
+            width: 80px;
+            height: 75px;
+            background: #fff;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: relative;
+            z-index: 3;
+        }
+        
+        /* Telinga Kuromi - hitam panjang membentuk huruf V */
+        .kitty-ear {
+            width: 20px;
+            height: 52px;
+            background: #000;
+            border: 3px solid #5d4e37;
+            border-radius: 50% 50% 25% 25%;
+            position: absolute;
+            top: -28px;
+            z-index: 2;
+            animation: earWiggle 3s ease-in-out infinite;
+        }
+        
+        @keyframes earWiggle {
+            0%, 100% { 
+                transform: rotate(0deg); 
+            }
+            50% { 
+                transform: rotate(-3deg); 
+            }
+        }
+        
+        .kitty-ear.left {
+            left: 5px;
+            transform: rotate(-25deg);
+            transform-origin: bottom center;
+        }
+        
+        .kitty-ear.right {
+            right: 5px;
+            transform: rotate(25deg);
+            transform-origin: bottom center;
+            animation-delay: 1.5s;
+        }
+        
+        /* Bagian dalam telinga - pink */
+        .kitty-ear::after {
+            content: '';
+            width: 12px;
+            height: 24px;
+            background: #ff1493;
+            border-radius: 50%;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Skull dan tanduk Kuromi */
+        .kitty-bow {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+        }
+        
+        /* Tanduk kiri - pink */
+        .bow-part.left {
+            width: 10px;
+            height: 24px;
+            background: #ff1493;
+            border: 3px solid #5d4e37;
+            border-radius: 50% 50% 25% 25%;
+            position: absolute;
+            left: -8px;
+            top: 0;
+            transform: rotate(-12deg);
+        }
+        
+        /* Tanduk kanan - pink */
+        .bow-part.right {
+            width: 10px;
+            height: 24px;
+            background: #ff1493;
+            border: 3px solid #5d4e37;
+            border-radius: 50% 50% 25% 25%;
+            position: absolute;
+            right: -8px;
+            top: 0;
+            transform: rotate(12deg);
+        }
+        
+        /* Skull di tengah - pink dengan mata hitam */
+        .bow-center {
+            width: 20px;
+            height: 18px;
+            background: #ff69b4;
+            border: 3px solid #5d4e37;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            top: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 6;
+        }
+        
+        /* Mata skull */
+        .bow-center::after {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 5px;
+            left: 4px;
+            box-shadow: 7px 0 0 #000;
+        }
+        
+        /* Hidung skull */
+        .bow-center::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-top: 4px solid #000;
+            position: absolute;
+            bottom: 1px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Hidung Kuromi - pink bulat kecil */
+        .kitty-nose {
+            width: 6px;
+            height: 5px;
+            background: #ff1493;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 26px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+        }
+        
+        /* Kumis Kuromi - 3 garis tiap sisi */
+        .kitty-whisker {
+            height: 2px;
+            background: #000;
+            position: absolute;
+            z-index: 4;
+        }
+        
+        .kitty-whisker.left {
+            width: 18px;
+            left: -2px;
+            top: 38px;
+            transform-origin: right center;
+        }
+        
+        .kitty-whisker.right {
+            width: 18px;
+            right: -2px;
+            top: 38px;
+            transform-origin: left center;
+        }
+        
+        .kitty-whisker.left::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 2px;
+            background: #000;
+            top: -5px;
+            right: 0;
+        }
+        
+        .kitty-whisker.left::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 2px;
+            background: #000;
+            top: 5px;
+            right: 0;
+        }
+        
+        .kitty-whisker.right::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 2px;
+            background: #000;
+            top: -5px;
+            left: 0;
+        }
+        
+        .kitty-whisker.right::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 2px;
+            background: #000;
+            top: 5px;
+            left: 0;
+        }
+        
+        /* Tangan kanan Kuromi - melambai dengan hangat */
+        .kitty-arm {
+            width: 20px;
+            height: 32px;
+            background: #fff;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 10px;
+            right: -8px;
+            transform-origin: top center;
+            animation: kuromiWave 1.5s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        @keyframes kuromiWave {
+            0% { 
+                transform: rotate(20deg);
+            }
+            25% { 
+                transform: rotate(-15deg);
+            }
+            50% { 
+                transform: rotate(45deg);
+            }
+            75% { 
+                transform: rotate(-10deg);
+            }
+            100% { 
+                transform: rotate(20deg);
+            }
+        }
+        
+        /* Tangan kiri Kuromi - diam */
+        .kitty-arm::before {
+            content: '';
+            width: 20px;
+            height: 32px;
+            background: #fff;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: -64px;
+        }
+        
+        /* Ekor devil - hitam dengan ujung lancip */
+        .kitty-arm::after {
+            content: '🖤';
+            font-size: 20px;
+            position: absolute;
+            bottom: -10px;
+            left: -75px;
+            animation: tailWiggle 2s ease-in-out infinite;
+        }
+        
+        @keyframes tailWiggle {
+            0%, 100% { 
+                transform: rotate(0deg); 
+            }
+            50% { 
+                transform: rotate(15deg); 
+            }
+        }
+        
+        /* ===== SHARED CHARACTER ELEMENTS ===== */
+        .char-eye {
+            width: 9px;
+            height: 9px;
+            background: #2d2d2d;
+            border-radius: 50%;
+            position: absolute;
+            top: 26px;
+            animation: eyeBlink 5s infinite;
+        }
+        
+        /* Sparkle di mata untuk efek hidup */
+        .char-eye::before {
+            content: '';
+            width: 3px;
+            height: 3px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+        }
+        
+        .char-eye.left { left: 18px; }
+        .char-eye.right { right: 18px; }
+        
+        .char-blush {
+            width: 14px;
+            height: 9px;
+            background: #ffb399;
+            border-radius: 50%;
+            position: absolute;
+            top: 30px;
+            opacity: 0.75;
+        }
+        
+        .char-blush.left { left: 6px; }
+        .char-blush.right { right: 6px; }
+        
+        .char-smile {
+            width: 20px;
+            height: 12px;
+            border: 2px solid #2d2d2d;
+            border-top: none;
+            border-radius: 0 0 60% 60%;
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Tangan Pompompurin - DITAMBAHKAN */
+        .pompom-paw {
+            width: 18px;
+            height: 28px;
+            background: #ffd966;
+            border: 3px solid #5d4e37;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 15px;
+            right: -8px;
+            transform-origin: top center;
+            animation: pompomPawWave 1.5s ease-in-out infinite;
+            z-index: 0;
+        }
+        
+        @keyframes pompomPawWave {
+            0%, 100% { transform: rotate(20deg); }
+            50% { transform: rotate(-30deg); }
+        }
+        
+        /* ===== SPARKLES ===== */
+        .sparkle {
+            position: absolute;
+            font-size: 24px;
+            animation: sparkleFloat 3.5s ease-in-out infinite;
+            z-index: 10;
+        }
+        
+        @keyframes sparkleFloat {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            25% {
+                transform: translateY(-12px) rotate(90deg) scale(1.15);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-25px) rotate(180deg) scale(1.3);
+                opacity: 0.6;
+            }
+            75% {
+                transform: translateY(-12px) rotate(270deg) scale(1.15);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* ===== BALLOONS ===== */
+        .balloon {
+            width: 45px;
+            height: 55px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            border: 3px solid #5d4e37;
+            position: absolute;
+            animation: balloonFloat 4.5s ease-in-out infinite;
+            z-index: 5;
+        }
+        
+        @keyframes balloonFloat {
+            0% {
+                transform: translateY(0) rotate(-5deg);
+            }
+            25% {
+                transform: translateY(-15px) rotate(3deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+            75% {
+                transform: translateY(-15px) rotate(-3deg);
+            }
+            100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+        }
+        
+        .balloon::after {
+            content: '';
+            width: 2px;
+            height: 40px;
+            background: #5d4e37;
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Screen 1: Pembuka -->
+        <div class="screen active" id="screen1">
+            <div class="nav-bar">
+                <div style="width: 36px;"></div>
+                <div style="font-family: 'VT323', monospace; font-size: 20px; color: #5d4e37;">🎂 Birthday 🎂</div>
+                <div style="width: 36px;"></div>
+            </div>
+            
+            <div class="balloon" style="top: 65px; left: 20px; background: #ff85c0;"></div>
+            <div class="balloon" style="top: 85px; right: 25px; background: #ffd966; animation-delay: 1.5s;"></div>
+            <div class="sparkle" style="top: 120px; left: 50%; animation-delay: 1s;">✨</div>
+            
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="dialog">
+                    <div class="dialog-text">
+                        Hai Lila! 🎉<br><br>
+                        Ada sesuatu yang spesial<br>
+                        menantimu hari ini!<br><br>
+                        Siap untuk petualangan<br>
+                        birthday yang seru?
+                    </div>
+                </div>
+                
+                <div class="stage">
+                    <div style="font-size: 80px; animation: giftShake 1.8s ease-in-out infinite;">🎁</div>
+                </div>
+                
+                <button class="btn" onclick="nextScreen(2)">mulai!</button>
+            </div>
+        </div>
+
+        <!-- Screen 2: Gift Box -->
+        <div class="screen" id="screen2">
+            <div class="nav-bar">
+                <button class="nav-btn" onclick="nextScreen(1)">←</button>
+                <button class="nav-btn" onclick="nextScreen(1)">✕</button>
+            </div>
+            
+            <div class="sparkle" style="top: 70px; left: 20px; animation-delay: 0.3s;">🎀</div>
+            <div class="sparkle" style="top: 95px; right: 25px; animation-delay: 1.2s;">💝</div>
+            
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="dialog">
+                    <div class="dialog-text">
+                        Lihat! Ada hadiah untukmu!<br><br>
+                        Tapi sebelum buka hadiah,<br>
+                        teman-teman lucu pengen<br>
+                        ngucapin sesuatu dulu~ 💕
+                    </div>
+                </div>
+                
+                <div class="stage">
+                    <div class="gift-box">
+                        <div class="gift-ribbon ribbon-h"></div>
+                        <div class="gift-ribbon ribbon-v"></div>
+                        <div class="bow"></div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="nextScreen(3)">siapa tuh?</button>
+            </div>
+        </div>
+
+        <!-- Screen 3: Cinnamoroll Jalan -->
+        <div class="screen" id="screen3">
+            <div class="nav-bar">
+                <button class="nav-btn" onclick="nextScreen(2)">←</button>
+                <button class="nav-btn" onclick="nextScreen(1)">✕</button>
+            </div>
+            
+            <div class="sparkle" style="top: 75px; left: 22px; animation-delay: 0.7s; color: #87CEEB;">☁️</div>
+            <div class="sparkle" style="top: 105px; right: 28px; animation-delay: 1.9s;">💙</div>
+            
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="dialog">
+                    <div class="dialog-text">
+                        Cinnamoroll terbang kesana-kemari<br>
+                        sambil melambai dengan gembira!<br><br>
+                        Dia bilang:<br>
+                        "Lila itu sebaik awan yang lembut!"
+                    </div>
+                </div>
+                
+                <div class="stage">
+                    <div class="cinnamoroll">
+                        <div class="cinna-body">
+                            <div class="cinna-ear left">
+                                <div class="cinna-ear-pink"></div>
+                            </div>
+                            <div class="cinna-ear right">
+                                <div class="cinna-ear-pink"></div>
+                            </div>
+                        </div>
+                        <div class="cinna-face">
+                            <div class="cinna-eye left"></div>
+                            <div class="cinna-eye right"></div>
+                            <div class="cinna-blush left"></div>
+                            <div class="cinna-blush right"></div>
+                            <div class="cinna-mouth"></div>
+                        </div>
+                        <div class="cinna-legs">
+                            <div class="cinna-leg left"></div>
+                            <div class="cinna-leg right"></div>
+                        </div>
+                        <div class="cinna-paw"></div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="nextScreen(4)">next!</button>
+            </div>
+        </div>
+
+        <!-- Screen 4: Pompompurin Melompat -->
+        <div class="screen" id="screen4">
+            <div class="nav-bar">
+                <button class="nav-btn" onclick="nextScreen(3)">←</button>
+                <button class="nav-btn" onclick="nextScreen(1)">✕</button>
+            </div>
+            
+            <div class="sparkle" style="top: 85px; left: 28px; animation-delay: 0.5s;">💛</div>
+            <div class="sparkle" style="top: 115px; right: 32px; animation-delay: 2s;">🍮</div>
+            
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="dialog">
+                    <div class="dialog-text">
+                        Pompompurin loncat-loncat<br>
+                        dan melambai kegirangan!<br><br>
+                        Dia bilang:<br>
+                        "Lila tuh manis kayak puding!"
+                    </div>
+                </div>
+                
+                <div class="stage">
+                    <div class="pompompurin">
+                        <div class="pompom-body">
+                            <div class="pompom-hat"></div>
+                            <div class="pompom-face">
+                                <div class="char-eye left"></div>
+                                <div class="char-eye right"></div>
+                                <div class="char-blush left"></div>
+                                <div class="char-blush right"></div>
+                                <div class="char-smile"></div>
+                            </div>
+                        </div>
+                        <div class="pompom-paw"></div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="nextScreen(5)">lanjut!</button>
+            </div>
+        </div>
+
+        <!-- Screen 5: My Melody Menari -->
+        <div class="screen" id="screen5">
+            <div class="nav-bar">
+                <button class="nav-btn" onclick="nextScreen(4)">←</button>
+                <button class="nav-btn" onclick="nextScreen(1)">✕</button>
+            </div>
+            
+            <div class="sparkle" style="top: 80px; left: 25px; color: #ffb3d9;">💕</div>
+            <div class="sparkle" style="top: 110px; right: 30px; animation-delay: 1.8s; color: #ff85c0;">💖</div>
+            
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="dialog">
+                    <div class="dialog-text">
+                        My Melody goyang-goyang<br>
+                        sambil melambai bahagia!<br><br>
+                        Dia bilang:<br>
+                        "Lila itu cantiknya<br>
+                        dari hati yang tulus!"
+                    </div>
+                </div>
+                
+                <div class="stage">
+                    <div class="mymelody">
+                        <div class="melody-ear left"></div>
+                        <div class="melody-ear right"></div>
+                        <div class="melody-hood"></div>
+                        <div class="melody-body">
+                            <div class="char-eye left"></div>
+                            <div class="char-eye right"></div>
+                            <div class="char-blush left"></div>
+                            <div class="char-blush right"></div>
+                            <div class="char-smile"></div>
+                        </div>
+                        <div class="melody-paw"></div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="nextScreen(6)">lanjut!</button>
+            </div>
+        </div>
+
+        <!-- Screen 6: Kuromi Melambai -->
+        <div class="screen" id="screen6">
+            <div class="nav-bar">
+                <button class="nav-btn" onclick="nextScreen(5)">←</button>
+                <button class="nav-btn" onclick="nextScreen(1)">✕</button>
+            </div>
+            
+            <div class="sparkle" style="top: 85px; left: 30px;">💀</div>
+            <div class="sparkle" style="top: 110px; right: 35px; animation-delay: 1.5s;">🖤</div>
+            <div class="sparkle" style="top: 95px; right: 15px; animation-delay: 0.8s; color: #ff69b4;">💕</div>
+            <div class="sparkle" style="top: 130px; left: 20px; animation-delay: 2.2s;">✨</div>
+            
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="dialog">
+                    <div class="dialog-text">
+                        Kuromi loncat-loncat<br>
+                        sambil melambai!<br><br>
+                        Dia bilang:<br>
+                        "Lila itu keren banget!<br>
+                        Jadilah dirimu sendiri<br>
+                        dan jangan peduli kata orang!" 💀💕
+                    </div>
+                </div>
+                
+                <div class="stage">
+                    <div class="hellokitty">
+                        <div class="kitty-head">
+                            <div class="kitty-ear left"></div>
+                            <div class="kitty-ear right"></div>
+                            <div class="kitty-bow">
+                                <div class="bow-part left"></div>
+                                <div class="bow-part right"></div>
+                                <div class="bow-center"></div>
+                            </div>
+                            <div class="char-eye left"></div>
+                            <div class="char-eye right"></div>
+                            <div class="char-blush left"></div>
+                            <div class="char-blush right"></div>
+                            <div class="char-smile"></div>
+                            <div class="kitty-nose"></div>
+                            <div class="kitty-whisker left"></div>
+                            <div class="kitty-whisker right"></div>
+                        </div>
+                        <div class="kitty-arm"></div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="nextScreen(7)">terakhir!</button>
+            </div>
+        </div>
+
+        <!-- Screen 7: Pesan Akhir -->
+        <div class="screen" id="screen7">
+            <div class="nav-bar">
+                <button class="nav-btn" onclick="nextScreen(6)">←</button>
+                <button class="nav-btn" onclick="nextScreen(1)">✕</button>
+            </div>
+            
+            <div class="balloon" style="top: 65px; left: 18px; background: #ffd966;"></div>
+            <div class="balloon" style="top: 85px; right: 22px; background: #ff6b9d; animation-delay: 2s;"></div>
+            <div class="sparkle" style="bottom: 140px; left: 50%; animation-delay: 0.8s;">🌟</div>
+            
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="dialog">
+                    <div class="dialog-text">
+                        Selamat ulang tahun<br>
+                        Lila yang menggemaskan!<br><br>
+                        Semoga di usia 17 tahun ini<br>
+                        kamu selalu dikelilingi<br>
+                        orang-orang yang menyayangimu<br>
+                        dan kebahagiaan di setiap hari.<br><br>
+                        Tetap jadi Lila yang lucu<br>
+                        dan penuh semangat! 💖
+                    </div>
+                </div>
+                
+                <div class="stage">
+                    <div class="cinnamoroll">
+                        <div class="cinna-body">
+                            <div class="cinna-ear left">
+                                <div class="cinna-ear-pink"></div>
+                            </div>
+                            <div class="cinna-ear right">
+                                <div class="cinna-ear-pink"></div>
+                            </div>
+                        </div>
+                        <div class="cinna-face">
+                            <div class="cinna-eye left"></div>
+                            <div class="cinna-eye right"></div>
+                            <div class="cinna-blush left"></div>
+                            <div class="cinna-blush right"></div>
+                            <div class="cinna-mouth"></div>
+                        </div>
+                        <div class="cinna-paw"></div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="nextScreen(1)">ulangi 🔄</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function nextScreen(num) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen' + num).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
